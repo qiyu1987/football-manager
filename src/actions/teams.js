@@ -66,10 +66,11 @@ const teamDeleteSuccess = id => ({
   type: TEAM_DELETE_SUCCESS,
   payload:id
 })
-export const deleteTeam = (id) => dispatch => {
+export const deleteTeam = (id) => (dispatch,getState) => {
   request
   .delete(`${baseUrl}/teams/${id}`)
   .send(id)
+  .set({Authorization: `Bearer ${getState().auth}`})
   .then(response => {
     dispatch(teamDeleteSuccess(response.body))
   })
