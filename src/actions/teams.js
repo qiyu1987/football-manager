@@ -2,7 +2,7 @@ import request from 'superagent'
 
 export const TEAMS_FETCHED = 'TEAMS_FETCHED'
 
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'https://vast-chamber-04214.herokuapp.com/'
 
 const teamsFetched = teams => ({
   type: TEAMS_FETCHED,
