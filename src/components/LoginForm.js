@@ -13,10 +13,15 @@ function LoginForm(props) {
             <label>Password</label>
             <input 
                 type='password'
-                name='email'
+                name='password'
                 onChange={props.onChange}
                 value={props.values.password}
             ></input>
+            <input
+                type='submit'
+                value='Log In'
+            >
+            </input>
             
         </form>
     )
