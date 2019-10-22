@@ -2,6 +2,7 @@ import React from 'react'
 import LoginForm from './LoginForm'
 import { connect } from 'react-redux'
 import { login } from '../actions/auth'
+import { Redirect } from 'react-router'
 
 class LoginFormContainer extends React.Component {
   state = { email: '', password: '' }
@@ -18,12 +19,15 @@ class LoginFormContainer extends React.Component {
   }
 
   render() {
-    return <LoginForm
+    return !this.props.token ? <LoginForm
       onSubmit={this.onSubmit}
       onChange={this.onChange}
       values={this.state}
-    />
+    /> : <Redirect to='/'/>
   }
 }
+const mapStateToProps = (state) => {
+    return {token: state.auth}
+}
 
-export default connect(null, { login })(LoginFormContainer)
+export default connect(mapStateToProps, { login })(LoginFormContainer)
