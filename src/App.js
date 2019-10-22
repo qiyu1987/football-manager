@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import store from './store'
+import { Provider } from 'react-redux'
+import { Route } from 'react-router-dom'
+import TeamsListContainer from './components/TeamsListContainer'
+import CreatTeamFormContainer from './components/CreatTeamFormContainer'
+import TeamDetailsContainer from './components/TeamDetailsContainer'
+import LoginFormContainer from './components/LoginFormContainer'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <div>
+          <Route path="/" exact component={TeamsListContainer} />
+          <Route path='/' exact component={CreatTeamFormContainer}/>
+          <Route path='/teams/:id' component={TeamDetailsContainer}/>
+          <Route path='/login' component={LoginFormContainer}/>
+        </div>
+      </Provider>
+    );
+  }
 }
 
-export default App;
+export default App
